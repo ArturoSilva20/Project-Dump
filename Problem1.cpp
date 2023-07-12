@@ -1,45 +1,43 @@
 #include <iostream>
-#include <vector>
-#include <string>
 
-bool check_same(std::string x, std::string y, int z) {
-    for (char j : x) {
-        if (j != y[z])
-            return 0;
-        z++;
-    }
-    return 1;
+int fibonacci(int n) {
+    if (n < 0)
+        return -1;
+    if (n == 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else;
+    return (fibonacci(n - 1) + fibonacci(n - 2));
 }
 
-void Find_target_string(std::string Array_A, std::vector<std::string> Array_B, std::vector<int>& Output_order, std::vector<std::string>& Output_array) {
-    int i = 0;
 
-    while (i < Array_A.size()) {
-        for (std::string x : Array_B) {
-            if (check_same(x, Array_A, i)) {
-                Output_order.push_back(i);
-                Output_array.push_back(x);
-            }
-        }
-        i++;
-    }
+
+int fibonacci_golden(int n) {
+    int term = (pow((1 + sqrt(5)), n) - pow((1 - sqrt(5)), n)) / (pow(2, n) * sqrt(5));
+    return term;
+}
+int fibonacci_golden4(int n, int p) {
+    int term = fibonacci_golden(p) * pow(1.61803, (n - p));
+    return term;
+}
+int fibonacci_golden5(int n) {
+    int term = (fibonacci_golden(n) * 1.61803);
+    return term; // returns nth + 1 term
 }
 
 int main() {
-    std::string Array_A = "torranceoaklandrialtomarcooxnardchinofresnoirvineclovissimiorange";
-    std::vector<std::string> Array_B = { "oxnard", "irvine", "orange", "marco" };
-    std::vector<std::string> output_array;
-    std::vector<int> output_order;
+    int x;
+    int p;
+    std::cout << "Fibonacci Equation 5\nEnter term: ";
+    std::cin >> x;
+    std::cout << "Output: " << fibonacci_golden5(x) << "\nEnter term: ";
+    std::cin >> x;
+    std::cout << "Output: " << fibonacci_golden5(x) << '\n';
+    /*
+    for (int i = 2; i < x; i++) {
+        std::cout << fibonacci_golden4(i,p) << '\n';
 
-    Find_target_string(Array_A, Array_B, output_order, output_array);
-
-    for (std::string x : output_array) {
-        std::cout << x << ' ';
     }
-    std::cout << '\n';
-    for (int x : output_order) {
-        std::cout << x << ' ';
-    }
-    std::cout << '\n';
-
+    */
 }
